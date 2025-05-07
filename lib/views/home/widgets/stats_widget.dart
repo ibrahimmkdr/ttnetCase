@@ -1,12 +1,18 @@
+import 'dart:math';
+
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
+import '../../../controller/timer_controller.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../theme/app_color.dart';
 
 class StatsWidget extends StatelessWidget {
+  final controller = Get.find<TimerController>();
+
   StatsWidget({super.key});
   final appColor = AppColor();
   final appText = AppText();
@@ -20,7 +26,7 @@ class StatsWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCountryCard(),
+            _buildCountryCard(controller),
             SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -28,13 +34,13 @@ class StatsWidget extends StatelessWidget {
                 _buildDataCard(
                   iconPath: assetPath.download,
                   label: appText.download,
-                  backgroundColor: appColor.white,
+                  value: controller.download,
                 ),
                 const SizedBox(width: 8),
                 _buildDataCard(
                   iconPath: assetPath.upload,
                   label: appText.upload,
-                  backgroundColor: appColor.white,
+                  value: controller.upload,
                 ),
               ],
             ),
@@ -45,106 +51,119 @@ class StatsWidget extends StatelessWidget {
   }
 
   // country Card widget
-  Widget _buildCountryCard() {
+  Widget _buildCountryCard(TimerController controller) {
     return Container(
       padding: EdgeInsets.all(8),
       height: 56,
       width: 248,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         color: appColor.cardColor,
       ),
+      child: Obx(
+        () {
+          final country = controller.selectedCountry.value;
+          final randomCity = (country.countryCity != null &&
+                  country.countryCity!.isNotEmpty)
+              ? country
+                  .countryCity![Random().nextInt(country.countryCity!.length)]
+              : '';
+
+          return Row(
+            children: [
+              CountryFlag.fromCountryCode(
+                shape: RoundedRectangle(8),
+                controller.selectedCountry.value.flagCode ?? "",
+                width: 36,
+                height: 28,
+              ),
+              SizedBox(width: 8),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.selectedCountry.value.countryName ?? "",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: appColor.black,
+                    ),
+                  ),
+                  Text(
+                    randomCity,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: appColor.lightGrey,
+                    ),
+                  ),
+                ],
+              ),
+              Spacer(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "Stealth",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: appColor.lightGrey,
+                    ),
+                  ),
+                  Text(
+                    controller.signalStrength.toString(),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: appColor.black,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  // download upload widget
+  Widget _buildDataCard({
+    required String iconPath,
+    required String label,
+    required RxString value,
+  }) {
+    return Container(
+      height: 56,
+      width: 120,
+      decoration: BoxDecoration(
+        color: appColor.cardColor,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CountryFlag.fromCountryCode(
-            shape: RoundedRectangle(8),
-            "tr",
-            width: 36,
-            height: 28,
-          ),
-          SizedBox(width: 8),
+          SvgPicture.asset(iconPath),
+          const SizedBox(width: 8),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Turkey",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: appColor.black,
-                ),
-              ),
-              Text(
-                "Bursa",
-                style: TextStyle(
-                  fontSize: 10,
-                  color: appColor.lightGrey,
+              Text(label,
+                  style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey)),
+              Obx(
+                () => Text(
+                  value.value,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ],
           ),
-          Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                "Stealth",
-                style: TextStyle(
-                  fontSize: 10,
-                  color: appColor.lightGrey,
-                ),
-              ),
-              Text(
-                "%14",
-                style: TextStyle(
-                  fontSize: 11,
-                  color: appColor.black,
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );
   }
-}
-
-// download upload widget
-Widget _buildDataCard({
-  required String iconPath,
-  required String label,
-  required Color backgroundColor,
-}) {
-  return Container(
-    height: 56,
-    width: 120,
-    decoration: BoxDecoration(
-      color: backgroundColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(iconPath),
-        const SizedBox(width: 8),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(label,
-                style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey)),
-            Text(
-              "15Mb",
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
 }

@@ -1,12 +1,15 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
+import '../../../controller/timer_controller.dart';
 import '../../../models/country_model.dart';
 import '../../../theme/app_color.dart';
 
 class CountryListCard extends StatelessWidget {
+  final controller = Get.find<TimerController>();
   final CountryModel countryInfo;
   CountryListCard({
     super.key,
@@ -24,7 +27,7 @@ class CountryListCard extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: appColor.cardColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
           padding: EdgeInsets.all(8),
@@ -59,11 +62,17 @@ class CountryListCard extends StatelessWidget {
               Spacer(),
               Row(
                 children: [
-                  _iconButton(
-                    onTap: () {},
-                    iconPath: appAsset.timerButton,
-                    isSelected: true,
-                  ),
+                  Obx(() {
+                    final isSelected =
+                        controller.selectedCountry.value.id == countryInfo.id;
+                    return _iconButton(
+                      onTap: () {
+                        controller.toggleSelection(countryInfo);
+                      },
+                      iconPath: appAsset.timerButton,
+                      isSelected: isSelected,
+                    );
+                  }),
                   const SizedBox(width: 8),
                   _iconButton(
                     onTap: () {},

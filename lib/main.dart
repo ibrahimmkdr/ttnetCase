@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ttnetcase/app_binding.dart';
 import 'package:ttnetcase/views/home_view.dart';
 
 void main() {
@@ -10,8 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: HomeView(),
+      initialBinding: InitialBinding(),
     );
   }
 }

@@ -49,7 +49,7 @@ class CustomAppBar extends StatelessWidget {
                     bottom: 30,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(16),
                         color: appColor.white,
                       ),
                       child: TextField(
