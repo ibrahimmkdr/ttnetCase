@@ -1,19 +1,69 @@
-class AppText {
-  final title = "Countries";
-  final searchHint = "Search For Country Or City";
-  final connectText = "Connecting Time";
-  final bottom1Text = "Countries";
-  final bottom2Text = "Disconnect";
-  final bottom3Text = "Settings";
-  final freeLocation = "Free Location (3)";
-  final download = "Download:";
-  final upload = "Upload:";
-  final stealth = "Stealth";
-  final vipSucces = "Congratulations!";
-  final vipUnSucces = "Information";
-  final vipSucMessage = "You are now VIP!";
-  final vipUnSucMessage = "VIP membership canceled.";
-  final unVipTitle = "Access denied";
-  final unVipSubtile = "You need to be a VIP to use this feature.";
-  final close = "Close";
-}
+import 'package:ttnetcase/models/country_model.dart';
+
+final List<CountryModel> countries = [
+  CountryModel(
+      flagCode: 'it',
+      countryName: 'Italy',
+      locationCount: 3,
+      id: 'it1',
+      strength: "70",
+      countryCity: ["Roma", "paris", "milano"]),
+  CountryModel(
+      flagCode: 'ug',
+      countryName: 'Uganda',
+      locationCount: 3,
+      id: 'ug1',
+      strength: "59",
+      countryCity: ["kampala", "Mbale"]),
+  CountryModel(
+      flagCode: 'tr',
+      countryName: 'Turkey',
+      locationCount: 4,
+      id: '  tr2',
+      strength: "72",
+      countryCity: ["Istanbul", "Bursa", "Ankara", "Eskişehir"]),
+  CountryModel(
+      flagCode: 'de',
+      countryName: 'Germany',
+      locationCount: 3,
+      id: 'de1',
+      strength: "34",
+      countryCity: [
+        "Berlin",
+        "Hamburg",
+        "Frankfurt",
+      ]),
+  CountryModel(
+      flagCode: 'nl',
+      countryName: 'Netherlands',
+      countryCity: ["Rotterdam", "Amsterdam"],
+      locationCount: 4,
+      strength: "29",
+      id: 'nl1'),
+  CountryModel(
+      flagCode: 'it',
+      countryName: 'Italy',
+      locationCount: 3,
+      id: ' it2',
+      strength: "32",
+      countryCity: ["Roma"]),
+  CountryModel(
+      flagCode: 'tr',
+      countryName: 'Turkey',
+      locationCount: 3,
+      id: 'tr3',
+      strength: "97",
+      countryCity: ["Istanbul"]),
+  CountryModel(
+      flagCode: 'de',
+      countryName: 'Germany',
+      locationCount: 5,
+      id: 'de2',
+      countryCity: ["Berlin"]),
+  CountryModel(
+      flagCode: 'nl',
+      countryName: 'Netherlands',
+      countryCity: ["Rotterdam"],
+      locationCount: 4,
+      id: 'nl2'),
+];
