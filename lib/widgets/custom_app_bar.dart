@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../core/constant/app_text.dart';
-import '../../core/constant/asset_path.dart';
-import '../../theme/app_color.dart';
+import '../core/constant/app_text.dart';
+import '../core/constant/asset_path.dart';
+import '../theme/app_color.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
