@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controller/bottom_bar_controller.dart';
 import '../core/constant/app_text.dart';
 import '../core/constant/asset_path.dart';
-import '../theme/app_color.dart';
+import '../theme/theme_data/app_color.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({

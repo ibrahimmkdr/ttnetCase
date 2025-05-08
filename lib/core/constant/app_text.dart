@@ -16,4 +16,9 @@ class AppText {
   final unVipTitle = "Access denied";
   final unVipSubtile = "You need to be a VIP to use this feature.";
   final close = "Close";
+  final disconnectTitle = "Are you sure?";
+  final disconnectDesc = "You are about to disconnect.";
+  final no = "No";
+  final yes = "Yes";
+  final settingTitle = "Setting";
 }

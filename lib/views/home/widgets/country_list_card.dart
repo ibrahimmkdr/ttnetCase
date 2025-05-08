@@ -6,10 +6,9 @@ import 'package:ttnetcase/controller/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
 import '../../../models/country_model.dart';
-import '../../../theme/app_color.dart';
+import '../../../theme/theme_data/app_color.dart';
 
 class CountryListCard extends StatelessWidget {
-  final controller = Get.find<TimerController>();
   final CountryModel countryInfo;
   CountryListCard({
     super.key,
@@ -20,6 +19,8 @@ class CountryListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<TimerController>();
+
     return Padding(
       padding: EdgeInsets.only(right: 32, left: 32, top: 8),
       child: Container(

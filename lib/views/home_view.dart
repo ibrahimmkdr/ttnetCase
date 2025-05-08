@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/bottom_bar_controller.dart';
-import '../theme/app_color.dart';
+import '../theme/theme_data/app_color.dart';
 import '../widgets/bottom_nav_bar.dart';
 
 class HomeView extends StatelessWidget {

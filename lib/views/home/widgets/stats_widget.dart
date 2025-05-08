@@ -6,17 +6,17 @@ import 'package:ttnetcase/controller/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
 import '../../../core/constant/app_text.dart';
-import '../../../theme/app_color.dart';
+import '../../../theme/theme_data/app_color.dart';
 
 class StatsWidget extends StatelessWidget {
-  final controller = Get.find<TimerController>();
-
   StatsWidget({super.key});
   final appColor = AppColor();
   final appText = AppText();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<TimerController>();
+
     final assetPath = AssetPath();
     return SliverToBoxAdapter(
       child: Padding(
