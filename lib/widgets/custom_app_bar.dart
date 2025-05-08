@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:ttnetcase/controller/search_controller.dart';
 
 import '../core/constant/app_text.dart';
 import '../core/constant/asset_path.dart';
 import '../theme/app_color.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
   });
+  final searchController = Get.find<SearchFilterController>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +56,10 @@ class CustomAppBar extends StatelessWidget {
                         color: appColor.white,
                       ),
                       child: TextField(
+                        controller: searchController.searchFilterController,
+                        onChanged: (value) {
+                          searchController.updateSearchText(value);
+                        },
                         decoration: InputDecoration(
                           hintText: appText.searchHint,
                           hintStyle: TextStyle(

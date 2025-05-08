@@ -2,9 +2,9 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ttnetcase/controller/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
-import '../../../controller/timer_controller.dart';
 import '../../../models/country_model.dart';
 import '../../../theme/app_color.dart';
 

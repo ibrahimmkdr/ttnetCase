@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:ttnetcase/controller/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
-import '../../../controller/timer_controller.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../theme/app_color.dart';
 
@@ -62,13 +60,6 @@ class StatsWidget extends StatelessWidget {
       ),
       child: Obx(
         () {
-          final country = controller.selectedCountry.value;
-          final randomCity = (country.countryCity != null &&
-                  country.countryCity!.isNotEmpty)
-              ? country
-                  .countryCity![Random().nextInt(country.countryCity!.length)]
-              : '';
-
           return Row(
             children: [
               CountryFlag.fromCountryCode(
@@ -90,7 +81,7 @@ class StatsWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    randomCity,
+                    controller.randomCity.value,
                     style: TextStyle(
                       fontSize: 10,
                       color: appColor.lightGrey,

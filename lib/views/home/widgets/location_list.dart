@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ttnetcase/core/constant/country_list.dart';
+import 'package:ttnetcase/views/home/widgets/country_list_card.dart';
 
-import '../../../core/constant/country_list.dart';
-import 'country_list_card.dart';
+import '../../../controller/search_controller.dart';
 
 class LocationList extends StatelessWidget {
   const LocationList({
@@ -10,15 +12,29 @@ class LocationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return CountryListCard(
-            countryInfo: countries[index],
-          );
-        },
-        childCount: countries.length,
-      ),
+    final searchController = Get.find<SearchFilterController>();
+
+    return Obx(
+      () {
+        final searchText = searchController.searchText.value.toLowerCase();
+        final filteredCountries = searchText.isEmpty
+            ? countries
+            : countries.where(
+                (country) {
+                  final name = (country.countryName ?? "").toLowerCase();
+                  return name.contains(searchText);
+                },
+              ).toList();
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final country = filteredCountries[index];
+              return CountryListCard(countryInfo: country);
+            },
+            childCount: filteredCountries.length,
+          ),
+        );
+      },
     );
   }
 }
