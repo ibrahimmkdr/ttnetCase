@@ -1,23 +1,23 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/controller/timer_controller.dart';
+import 'package:ttnetcase/controllers/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
+import 'package:ttnetcase/core/utils/svg_container.dart';
 
-import '../../../core/constant/app_text.dart';
-import '../../../theme/theme_data/app_color.dart';
+import '../../core/constant/app_text.dart';
+import '../../core/theme/app_color.dart';
 
 class StatsWidget extends StatelessWidget {
   StatsWidget({super.key});
-  final appColor = AppColor();
+  final appColor = ColorTheme();
   final appText = AppText();
+  final assetPath = AssetPath();
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<TimerController>();
 
-    final assetPath = AssetPath();
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(top: 24),
@@ -33,12 +33,14 @@ class StatsWidget extends StatelessWidget {
                   iconPath: assetPath.download,
                   label: appText.download,
                   value: controller.download,
+                  color: appColor.downloadColor,
                 ),
                 const SizedBox(width: 8),
                 _buildDataCard(
                   iconPath: assetPath.upload,
                   label: appText.upload,
                   value: controller.upload,
+                  color: appColor.uploadColor,
                 ),
               ],
             ),
@@ -122,6 +124,7 @@ class StatsWidget extends StatelessWidget {
     required String iconPath,
     required String label,
     required RxString value,
+    required Color? color,
   }) {
     return Container(
       height: 56,
@@ -134,7 +137,13 @@ class StatsWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(iconPath),
+          SvgContainer(
+              radius: BorderRadius.circular(8),
+              assetName: iconPath,
+              height: 28,
+              width: 28,
+              color: color,
+              padding: EdgeInsets.all(4)),
           const SizedBox(width: 8),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -148,7 +157,10 @@ class StatsWidget extends StatelessWidget {
               Obx(
                 () => Text(
                   value.value,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: appColor.black,
+                      fontSize: 13),
                 ),
               ),
             ],

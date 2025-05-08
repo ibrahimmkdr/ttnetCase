@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/views/home/widgets/free_location_row.dart';
+import 'package:ttnetcase/widgets/home/free_location_row.dart';
 
-import '../../../controller/timer_controller.dart';
-import '../../../widgets/custom_app_bar.dart';
-import '../widgets/connection_row.dart';
-import '../widgets/location_list.dart';
-import '../widgets/stats_widget.dart';
+import '../../controllers/timer_controller.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../../widgets/home/connection_box.dart';
+import '../../widgets/home/location_list.dart';
+import '../../widgets/home/stats_widget.dart';
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({
+class HomeView extends StatelessWidget {
+  const HomeView({
     super.key,
   });
 
@@ -19,7 +19,7 @@ class HomeBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         CustomAppBar(),
-        ConnectionRow(),
+        ConnectionBox(),
         Obx(
           () => timerController.selectedCountry.value.countryName?.isNotEmpty ??
                   false

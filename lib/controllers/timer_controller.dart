@@ -58,8 +58,8 @@ class TimerController extends GetxController {
       int strength = 14 + _random.nextInt(50);
       signalStrength.value = '%$strength';
 
-      _download += 3;
-      _upload += 2;
+      _download += 2;
+      _upload += 1;
 
       download.value = '$_download MB';
       upload.value = '$_upload MB';

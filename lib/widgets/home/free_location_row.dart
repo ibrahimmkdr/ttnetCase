@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../core/constant/app_text.dart';
-import '../../../core/constant/asset_path.dart';
-import '../../../theme/theme_data/app_color.dart';
+import '../../core/constant/app_text.dart';
+import '../../core/constant/asset_path.dart';
+import '../../core/theme/app_color.dart';
 
 class FreeLocationRow extends StatelessWidget {
   const FreeLocationRow({
@@ -12,7 +12,7 @@ class FreeLocationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appColor = AppColor();
+    final appColor = ColorTheme();
     final appText = AppText();
     final assetPath = AssetPath();
     return SliverToBoxAdapter(
@@ -28,7 +28,10 @@ class FreeLocationRow extends StatelessWidget {
               ),
             ),
             Spacer(),
-            SvgPicture.asset(assetPath.exclamation)
+            SvgPicture.asset(
+              assetPath.exclamation,
+              color: appColor.black,
+            )
           ],
         ),
       ),

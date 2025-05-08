@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/controller/timer_controller.dart';
+import 'package:ttnetcase/controllers/timer_controller.dart';
+import 'package:ttnetcase/core/theme/app_color.dart';
 
-import '../../../core/constant/app_text.dart';
+import '../../core/constant/app_text.dart';
 
-class ConnectionRow extends StatelessWidget {
-  const ConnectionRow({
+class ConnectionBox extends StatelessWidget {
+  const ConnectionBox({
     super.key,
   });
 
@@ -13,6 +14,7 @@ class ConnectionRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final timerController = Get.find<TimerController>();
     final appText = AppText();
+    final appColor = ColorTheme();
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(top: 12),
@@ -21,13 +23,16 @@ class ConnectionRow extends StatelessWidget {
           children: [
             Text(
               appText.connectText,
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 12, color: appColor.black),
             ),
             SizedBox(height: 4),
             Obx(
               () => Text(
                 timerController.elapsedTime.value,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: appColor.black),
               ),
             ),
           ],

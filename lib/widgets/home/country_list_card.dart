@@ -2,11 +2,11 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/controller/timer_controller.dart';
+import 'package:ttnetcase/controllers/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
 
-import '../../../models/country_model.dart';
-import '../../../theme/theme_data/app_color.dart';
+import '../../core/theme/app_color.dart';
+import '../../models/country_model.dart';
 
 class CountryListCard extends StatelessWidget {
   final CountryModel countryInfo;
@@ -14,7 +14,7 @@ class CountryListCard extends StatelessWidget {
     super.key,
     required this.countryInfo,
   });
-  final appColor = AppColor();
+  final appColor = ColorTheme();
   final appAsset = AssetPath();
 
   @override
@@ -47,8 +47,10 @@ class CountryListCard extends StatelessWidget {
                 children: [
                   Text(
                     countryInfo.countryName ?? "",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500, fontSize: 14),
+                    style: TextStyle(
+                        color: appColor.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14),
                   ),
                   Text(
                     "${countryInfo.countryCity?.length ?? 0} Locations",

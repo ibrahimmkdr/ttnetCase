@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ttnetcase/core/constant/country_list.dart';
-import 'package:ttnetcase/views/home/widgets/country_list_card.dart';
+import 'package:ttnetcase/widgets/home/country_list_card.dart';
 
-import '../../../controller/search_controller.dart';
+import '../../controllers/search_controller.dart';
 
 class LocationList extends StatelessWidget {
   const LocationList({

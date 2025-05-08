@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:ttnetcase/controller/search_controller.dart';
-import 'package:ttnetcase/controller/timer_controller.dart';
+import 'package:ttnetcase/controllers/search_controller.dart';
+import 'package:ttnetcase/controllers/timer_controller.dart';
 
-import 'controller/bottom_bar_controller.dart';
+import 'controllers/bottom_bar_controller.dart';
 
 class InitialBinding extends Bindings {
   @override

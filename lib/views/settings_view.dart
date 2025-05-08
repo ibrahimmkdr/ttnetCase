@@ -1,37 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ttnetcase/core/constant/app_text.dart';
-import 'package:ttnetcase/theme/theme_data/app_color.dart';
+import 'package:ttnetcase/core/theme/app_color.dart';
+
+import '../core/theme/theme_controller.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.find<ThemeController>();
+
     final appText = AppText();
-    final appColor = AppColor();
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appColor.appbarColor,
-        title: Text(
-          appText.settingTitle,
-          style: TextStyle(color: appColor.white, fontSize: 16),
+    final appColor = ColorTheme();
+    return Obx(
+      () => Scaffold(
+        backgroundColor: appColor.scaffoldColor,
+        appBar: AppBar(
+          backgroundColor: appColor.appbarColor,
+          title: Text(
+            appText.settingTitle,
+            style: TextStyle(color: appColor.titleColor, fontSize: 16),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Switch theme"),
-            ElevatedButton(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
                 onPressed: () {
-                  Get.isDarkMode
-                      ? Get.changeTheme(ThemeData.light())
-                      : Get.changeTheme(ThemeData.dark());
+                  themeController.toggleTheme();
                 },
-                child: Text("change theme")),
-          ],
+                style:
+                    ElevatedButton.styleFrom(backgroundColor: appColor.white),
+                child: Text(
+                  themeController.isDarkMode ? "Change Light" : "Change Dark",
+                  style: TextStyle(color: appColor.black),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

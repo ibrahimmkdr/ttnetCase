@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/controller/search_controller.dart';
+import 'package:ttnetcase/controllers/search_controller.dart';
+import 'package:ttnetcase/core/utils/svg_container.dart';
 
 import '../core/constant/app_text.dart';
 import '../core/constant/asset_path.dart';
-import '../theme/theme_data/app_color.dart';
+import '../core/theme/app_color.dart';
 
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({
@@ -15,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appColor = AppColor();
+    final appColor = ColorTheme();
     final assetPath = AssetPath();
     final appText = AppText();
     return SliverAppBar(
@@ -90,7 +91,7 @@ class CustomAppBar extends StatelessWidget {
       title: Text(
         appText.title,
         style: TextStyle(
-          color: appColor.white,
+          color: appColor.titleColor,
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
@@ -99,10 +100,16 @@ class CustomAppBar extends StatelessWidget {
       leading: Transform.translate(
         offset: Offset(20, 0),
         child: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            assetPath.appBarMenu,
-          ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: SvgContainer(
+              radius: BorderRadius.circular(16),
+              padding: EdgeInsets.all(8),
+              color: appColor.appbarIconColor,
+              assetName: assetPath.appBarMenu,
+              height: 40,
+              width: 40),
         ),
       ),
       actions: [
@@ -110,9 +117,13 @@ class CustomAppBar extends StatelessWidget {
           offset: Offset(-20, 0),
           child: IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset(
-              assetPath.appBarVip,
-            ),
+            icon: SvgContainer(
+                radius: BorderRadius.circular(16),
+                padding: EdgeInsets.all(8),
+                color: appColor.appbarIconColor,
+                assetName: assetPath.appBarVip,
+                height: 40,
+                width: 40),
           ),
         ),
       ],
