@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ttnetcase/controllers/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
+import 'package:ttnetcase/views/city_view.dart';
 
 import '../../core/theme/app_color.dart';
 import '../../models/country_model.dart';
@@ -78,7 +79,11 @@ class CountryListCard extends StatelessWidget {
                   }),
                   const SizedBox(width: 8),
                   _iconButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => CityView(
+                            countryInfo: countryInfo,
+                          ));
+                    },
                     iconPath: appAsset.cardArrowButton,
                     backgroundColor: appColor.passiveButBackCollor,
                     iconColor: appColor.black,

@@ -5,7 +5,7 @@ class AppText {
   final bottom1Text = "Countries";
   final bottom2Text = "Disconnect";
   final bottom3Text = "Settings";
-  final freeLocation = "Free Location (3)";
+  final freeLocation = "Free Location";
   final download = "Download:";
   final upload = "Upload:";
   final stealth = "Stealth";

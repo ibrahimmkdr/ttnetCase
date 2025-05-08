@@ -21,7 +21,7 @@ class FreeLocationRow extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              appText.freeLocation,
+              "${appText.freeLocation} (3)",
               style: TextStyle(
                 fontSize: 12,
                 color: appColor.gray,
