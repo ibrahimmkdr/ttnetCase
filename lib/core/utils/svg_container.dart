@@ -8,7 +8,7 @@ class SvgContainer extends StatelessWidget {
       required this.height,
       required this.width,
       required this.color,
-      required this.padding,
+      this.padding,
       this.radius});
 
   final String assetName;

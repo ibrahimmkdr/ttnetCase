@@ -6,6 +6,7 @@ final List<CountryModel> countries = [
       countryName: 'Italy',
       locationCount: 3,
       id: 'it1',
+      isPremium: true,
       strength: "70",
       countryCity: ["Roma", "paris", "milano"]),
   CountryModel(
@@ -13,6 +14,7 @@ final List<CountryModel> countries = [
       countryName: 'Uganda',
       locationCount: 3,
       id: 'ug1',
+      isPremium: true,
       strength: "59",
       countryCity: ["kampala", "Mbale"]),
   CountryModel(
@@ -20,6 +22,7 @@ final List<CountryModel> countries = [
       countryName: 'Turkey',
       locationCount: 4,
       id: '  tr2',
+      isPremium: true,
       strength: "72",
       countryCity: ["Istanbul", "Bursa", "Ankara", "Eskişehir"]),
   CountryModel(

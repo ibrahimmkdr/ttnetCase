@@ -4,8 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ttnetcase/controllers/timer_controller.dart';
 import 'package:ttnetcase/core/constant/asset_path.dart';
+import 'package:ttnetcase/core/utils/svg_container.dart';
 import 'package:ttnetcase/views/city_view.dart';
 
+import '../../controllers/vip_controller.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/theme/app_color.dart';
 import '../../models/country_model.dart';
 
@@ -21,6 +24,7 @@ class CountryListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<TimerController>();
+    final vipController = Get.find<VipController>();
 
     return Padding(
       padding: EdgeInsets.only(right: 32, left: 32, top: 8),
@@ -63,6 +67,16 @@ class CountryListCard extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(width: 12),
+              if (countryInfo.isPremium ?? false)
+                SvgContainer(
+                  assetName: appAsset.appBarVip,
+                  height: 28,
+                  width: 28,
+                  color: appColor.appbarIconColor,
+                  padding: EdgeInsets.all(4),
+                  radius: BorderRadius.circular(8),
+                ),
               Spacer(),
               Row(
                 children: [
@@ -71,6 +85,11 @@ class CountryListCard extends StatelessWidget {
                         controller.selectedCountry.value.id == countryInfo.id;
                     return _iconButton(
                       onTap: () {
+                        if (countryInfo.isPremium == true &&
+                            !vipController.isVip.value) {
+                          _showVipDialog(context);
+                          return;
+                        }
                         controller.toggleSelection(countryInfo);
                       },
                       iconPath: appAsset.timerButton,
@@ -80,9 +99,12 @@ class CountryListCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   _iconButton(
                     onTap: () {
-                      Get.to(() => CityView(
-                            countryInfo: countryInfo,
-                          ));
+                      if (countryInfo.isPremium == true &&
+                          !vipController.isVip.value) {
+                        _showVipDialog(context);
+                        return;
+                      }
+                      Get.to(() => CityView(countryInfo: countryInfo));
                     },
                     iconPath: appAsset.cardArrowButton,
                     backgroundColor: appColor.passiveButBackCollor,
@@ -131,4 +153,21 @@ class CountryListCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showVipDialog(BuildContext context) {
+  final appText = AppText();
+
+  Get.dialog(
+    AlertDialog(
+      title: Text(appText.unVipTitle),
+      content: Text(appText.unVipSubtile),
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(),
+          child: Text(appText.close),
+        ),
+      ],
+    ),
+  );
 }

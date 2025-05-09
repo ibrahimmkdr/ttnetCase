@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ttnetcase/controllers/search_controller.dart';
+import 'package:ttnetcase/controllers/timer_controller.dart';
+import 'package:ttnetcase/controllers/vip_controller.dart';
 import 'package:ttnetcase/core/utils/svg_container.dart';
 
 import '../core/constant/app_text.dart';
@@ -16,6 +18,9 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vipController = Get.find<VipController>();
+    final timerController = Get.find<TimerController>();
+
     final appColor = ColorTheme();
     final assetPath = AssetPath();
     final appText = AppText();
@@ -116,14 +121,25 @@ class CustomAppBar extends StatelessWidget {
         Transform.translate(
           offset: Offset(-20, 0),
           child: IconButton(
-            onPressed: () {},
-            icon: SvgContainer(
-                radius: BorderRadius.circular(16),
-                padding: EdgeInsets.all(8),
-                color: appColor.appbarIconColor,
-                assetName: assetPath.appBarVip,
-                height: 40,
-                width: 40),
+            onPressed: () {
+              vipController.changeVip();
+
+              if (timerController.selectedCountry.value.isPremium == true &&
+                  vipController.isVip.value) {
+                timerController.stopTimer();
+              }
+            },
+            icon: Obx(
+              () => SvgContainer(
+                  radius: BorderRadius.circular(16),
+                  padding: EdgeInsets.all(8),
+                  color: vipController.isVip.value
+                      ? Colors.amber.shade400
+                      : appColor.appbarIconColor,
+                  assetName: assetPath.appBarVip,
+                  height: 40,
+                  width: 40),
+            ),
           ),
         ),
       ],

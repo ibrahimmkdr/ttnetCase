@@ -5,20 +5,20 @@ import 'package:ttnetcase/views/bottom_bar_view.dart';
 
 import 'core/theme/theme_controller.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final themeController = Get.put(ThemeController());
+  await themeController.loadTheme();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final themeController = Get.put(ThemeController());
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      themeMode: themeController.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
       initialBinding: InitialBinding(),
       home: BottomBarView(),
     );

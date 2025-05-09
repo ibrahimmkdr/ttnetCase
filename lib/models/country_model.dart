@@ -5,6 +5,7 @@ class CountryModel {
   final int? locationCount;
   final List<String>? countryCity;
   final String? strength;
+  final bool? isPremium;
 
   CountryModel({
     this.id,
@@ -13,5 +14,6 @@ class CountryModel {
     this.locationCount,
     this.countryCity,
     this.strength,
+    this.isPremium,
   });
 }
