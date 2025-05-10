@@ -2,6 +2,7 @@ class AppText {
   final title = "Countries";
   final searchHint = "Search For Country Or City";
   final connectText = "Connecting Time";
+  final lastConnect = "Last Connection Time";
   final bottom1Text = "Countries";
   final bottom2Text = "Disconnect";
   final bottom3Text = "Settings";
@@ -21,4 +22,7 @@ class AppText {
   final no = "No";
   final yes = "Yes";
   final settingTitle = "Setting";
+  final vipUser = "You are a VIP member!";
+  final unVipUser = "You are not a VIP member.";
+  final noConnection = "No Connection!";
 }

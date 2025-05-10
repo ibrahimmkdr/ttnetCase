@@ -134,7 +134,7 @@ class CustomAppBar extends StatelessWidget {
                   radius: BorderRadius.circular(16),
                   padding: EdgeInsets.all(8),
                   color: vipController.isVip.value
-                      ? Colors.amber.shade400
+                      ? Colors.amber.shade700
                       : appColor.appbarIconColor,
                   assetName: assetPath.appBarVip,
                   height: 40,

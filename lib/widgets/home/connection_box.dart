@@ -21,9 +21,13 @@ class ConnectionBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              appText.connectText,
-              style: TextStyle(fontSize: 12, color: appColor.black),
+            Obx(
+              () => Text(
+                timerController.selectedCountry.value.id?.isNotEmpty ?? false
+                    ? appText.connectText
+                    : appText.lastConnect,
+                style: TextStyle(fontSize: 12, color: appColor.black),
+              ),
             ),
             SizedBox(height: 4),
             Obx(

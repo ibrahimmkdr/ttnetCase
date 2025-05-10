@@ -69,4 +69,23 @@ final List<CountryModel> countries = [
       countryCity: ["Rotterdam"],
       locationCount: 4,
       id: 'nl2'),
+  CountryModel(
+      flagCode: 'tr',
+      countryName: 'Turkey',
+      locationCount: 3,
+      id: 'tr3',
+      strength: "97",
+      countryCity: ["Istanbul"]),
+  CountryModel(
+      flagCode: 'de',
+      countryName: 'Germany',
+      locationCount: 5,
+      id: 'de2',
+      countryCity: ["Berlin"]),
+  CountryModel(
+      flagCode: 'nl',
+      countryName: 'Netherlands',
+      countryCity: ["Rotterdam"],
+      locationCount: 4,
+      id: 'nl2'),
 ];

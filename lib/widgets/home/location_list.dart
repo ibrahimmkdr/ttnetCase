@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ttnetcase/core/constant/country_list.dart';
 import 'package:ttnetcase/widgets/home/country_list_card.dart';
 
 import '../../controllers/search_controller.dart';
@@ -16,15 +15,7 @@ class LocationList extends StatelessWidget {
 
     return Obx(
       () {
-        final searchText = searchController.searchText.value.toLowerCase();
-        final filteredCountries = searchText.isEmpty
-            ? countries
-            : countries.where(
-                (country) {
-                  final name = (country.countryName ?? "").toLowerCase();
-                  return name.contains(searchText);
-                },
-              ).toList();
+        final filteredCountries = searchController.filteredCountries;
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {

@@ -6,6 +6,7 @@ import '../../controllers/timer_controller.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/home/connection_box.dart';
 import '../../widgets/home/location_list.dart';
+import '../../widgets/home/no_connection_row.dart';
 import '../../widgets/home/stats_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -24,7 +25,7 @@ class HomeView extends StatelessWidget {
           () => timerController.selectedCountry.value.countryName?.isNotEmpty ??
                   false
               ? StatsWidget()
-              : SliverToBoxAdapter(),
+              : NoConnectionRow(),
         ),
         FreeLocationRow(),
         LocationList(),

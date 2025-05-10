@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:get/get.dart';
+import 'package:ttnetcase/extensions/time_extension.dart';
 import 'package:ttnetcase/models/country_model.dart';
 
 class TimerController extends GetxController {
@@ -48,12 +49,7 @@ class TimerController extends GetxController {
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       _seconds++;
 
-      int hours = _seconds ~/ 3600;
-      int minutes = (_seconds % 3600) ~/ 60;
-      int seconds = _seconds % 60;
-
-      elapsedTime.value =
-          '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+      elapsedTime.value = _seconds.formattedTime();
 
       int strength = 14 + _random.nextInt(50);
       signalStrength.value = '%$strength';
